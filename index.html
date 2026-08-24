@@ -194,6 +194,24 @@ const PLACES=[{"id":"main","city":"Gdańsk","category":"architecture","titleKey"
       cuisine:["american"],
       tags:["restaurant"],
       sourceUrl:"https://www.google.com/maps/search/?api=1&query=Brooklyn%20Gdynia%2C%20plac%20Kaszubski%2011%2C%2081-350%20Gdynia"
+    },{
+      id:"twierdza-wisloujscie",
+      city:"Gdańsk",
+      type:"MUSEUM",
+      category:"museums",
+      titleKey:"places.twierdzaWisloujscie.title",
+      descriptionKey:"places.twierdzaWisloujscie.description",
+      address:"Stara Twierdza 1, 80-551 Gdańsk",
+      lat:null,lng:null,
+      recommendedDuration:90,
+      openingHours:"unknown",
+      seasonalAvailability:{spring:"unknown",summer:"unknown",autumn:"unknown",winter:"unknown"},
+      familyFriendly:"unknown",
+      childrenSuitable:"unknown",
+      indoor:false,outdoor:true,
+      tags:["history","fortress","museum"],
+      sourceUrl:"https://www.google.com/maps/search/?api=1&query=Twierdza%20Wis%C5%82ouj%C5%9Bcie%2C%20Stara%20Twierdza%201%2C%2080-551%20Gda%C5%84sk",mapsUrl:"https://www.google.com/maps/search/?api=1&query=Twierdza%20Wis%C5%82ouj%C5%9Bcie%2C%20Stara%20Twierdza%201%2C%2080-551%20Gda%C5%84sk",
+      routeEligible:false
     }]
 
 // Additional verified places/resources. Places without confirmed coordinates stay catalog-only and never enter automatic routing.
@@ -854,7 +872,8 @@ function refreshAll(){renderStatic();renderSocialProfiles();renderBikeResources(
 document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>{if(currentLang===b.dataset.lang)return;currentLang=b.dataset.lang;localStorage.setItem('strefaLang',currentLang);refreshAll()}));
 window.addEventListener('resize',()=>{if(mapInstance){mapInstance.invalidateSize({pan:false});if(lastScheduledRoute)updateMapDay(mapDayIndex)}});document.addEventListener('visibilitychange',()=>{if(!document.hidden&&mapInstance){setTimeout(()=>{mapInstance.invalidateSize({pan:false});if(lastScheduledRoute)updateMapDay(mapDayIndex)},80)}});
 $('go').addEventListener('click',generate);$('time').addEventListener('input',clearTimeValidation);$('end-time').addEventListener('input',clearTimeValidation);$('cityFilter').addEventListener('change',renderCatalog);$('catFilter').addEventListener('change',renderCatalog);$('backTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-for(const [lang,texts] of Object.entries({uk:{'map.loading':'Завантаження карти…','map.bike':'Велосипедом','map.unavailable':'Карта маршруту тимчасово недоступна.'},ru:{'map.loading':'Загрузка карты…','map.bike':'На велосипеде','map.unavailable':'Карта маршрута временно недоступна.'},en:{'map.loading':'Loading map…','map.bike':'Bicycle','map.unavailable':'Route map is temporarily unavailable.'},pl:{'map.loading':'Ładowanie mapy…','map.bike':'Rowerem','map.unavailable':'Mapa trasy jest tymczasowo niedostępna.'}}))Object.assign(I18N[lang],texts);
+for(const [lang,texts] of Object.entries({uk:{"places.twierdzaWisloujscie.title":"Twierdza Wisłoujście","places.twierdzaWisloujscie.description":"Історична фортеця біля гирла Мотлави, цікава локація для поціновувачів історії та архітектури.",'map.loading':'Завантаження карти…','map.bike':'Велосипедом','map.unavailable':'Карта маршруту тимчасово недоступна.'},ru:{"places.twierdzaWisloujscie.title":"Крепость Вислоуйсьце","places.twierdzaWisloujscie.description":"Историческая крепость у устья Мотлавы, интересное место для любителей истории и архитектуры.",'map.loading':'Загрузка карты…','map.bike':'На велосипеде','map.unavailable':'Карта маршрута временно недоступна.'},en:{"places.twierdzaWisloujscie.title":"Twierdza Wisłoujście","places.twierdzaWisloujscie.description":"A historic fortress at the mouth of the Motława River, interesting for history and architecture lovers.",'map.loading':'Loading map…','map.bike':'Bicycle','map.unavailable':'Route map is temporarily unavailable.'},pl:{"places.twierdzaWisloujscie.title":"Twierdza Wisłoujście","places.twierdzaWisloujscie.description":"Historyczna twierdza przy ujściu Motławy, ciekawa dla miłośników historii i architektury.",'map.loading':'Ładowanie mapy…','map.bike':'Rowerem','map.unavailable':'Mapa trasy jest tymczasowo niedostępna.'}}))Object.assign(I18N[lang],texts);
+refreshAll();
 const validationErrors=validateDataLayer();if(validationErrors.length)console.warn('DATA validation errors:',validationErrors);
 $('date').value=todayISO();refreshAll();
 </script></body></html>
