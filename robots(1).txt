@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mariiahunchak.github.io/trisity_guide/sitemap.xml
